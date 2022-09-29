@@ -17,6 +17,7 @@ export class UserdashboardComponent implements OnInit {
   time: number = 0;
   display: any;
   interval: any;
+  starttime: any;
 
   tasks: object[] = [];
 
@@ -52,6 +53,7 @@ export class UserdashboardComponent implements OnInit {
     this.timer ? (this.button = 'STOP TIMER') : (this.button = 'START TIMER');
     if (this.timer) {
       this.startTimer();
+      this.starttime = new Date().toString();
     } else {
       this.pauseTimer();
 
@@ -63,12 +65,13 @@ export class UserdashboardComponent implements OnInit {
         desc: this.taskForm?.['desc'].value,
         date: new Date().toString(),
         timer: this.display,
+        start: this.starttime,
       };
 
       this.taskService.createTask(taskData).subscribe(
         (task) => {
           console.log(task);
-          this.taskService.task.next(task);
+          this.taskService.task.next(true);
         },
         (error: HttpErrorResponse) => {
           console.log(error);
@@ -95,10 +98,9 @@ export class UserdashboardComponent implements OnInit {
   }
 
   transform(value: number): string {
-    var sec_num = value;
-    var hours = Math.floor(sec_num / 3600);
-    var minutes = Math.floor((sec_num - hours * 3600) / 60);
-    var seconds = sec_num - hours * 3600 - minutes * 60;
+    let sec_num = value;
+    let hours = Math.floor(sec_num / 3600);
+    let minutes = Math.floor((sec_num - hours * 3600) / 60);
 
     if (hours < 10) {
       hours = 0;

@@ -4,5 +4,6 @@ export class Task {
   desc?: string;
   date?: string;
   timer?: string;
+  start?: string;
   user?: any;
 }

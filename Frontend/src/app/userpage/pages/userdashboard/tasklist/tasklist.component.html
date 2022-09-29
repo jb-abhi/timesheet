@@ -79,13 +79,13 @@
     </ng-template>
     <ng-template pTemplate="body" let-task>
       <tr>
-        <td>1.</td>
+        <td>{{ task.id }}</td>
         <td>{{ task.name | titlecase }}</td>
         <td>{{ task.desc }}</td>
-        <td>24/05/2021</td>
-        <td>02:05:24</td>
-        <td>04:25:30</td>
-        <td>1hour 35minutes</td>
+        <td>{{ task.date | date: "dd-MM-yyyy" }}</td>
+        <td>{{ task.start | date: "hh:mm a" }}</td>
+        <td>{{ task.date | date: "hh:mm a" }}</td>
+        <td>{{ task.timer }}</td>
         <td>
           <button
             pButton
@@ -98,6 +98,7 @@
             pRipple
             icon="pi pi-trash"
             class="p-button-rounded p-button-warning"
+            (click)="onDelete(task.id)"
           ></button>
         </td>
       </tr>
