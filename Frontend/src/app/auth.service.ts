@@ -29,6 +29,10 @@ export class AuthService {
     this.router.navigate(['/login']);
   }
 
+  getUser(userId: string): Observable<User> {
+    return this.http.get<User>(this.apiURLUsers + `/${userId}`);
+  }
+
   signup(name: string, email: string, password: string): Observable<User> {
     return this.http.post<User>(`${this.apiURLUsers}`, {
       name,
