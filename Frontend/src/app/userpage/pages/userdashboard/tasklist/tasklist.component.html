@@ -1,25 +1,4 @@
-<p-toast></p-toast>
-
-<div class="card">
-  <p-toolbar styleClass="mb-4">
-    <ng-template pTemplate="left">
-      <button
-        pButton
-        pRipple
-        label="New"
-        icon="pi pi-plus"
-        class="p-button-success mr-2"
-      ></button>
-      <button
-        pButton
-        pRipple
-        label="Delete"
-        icon="pi pi-trash"
-        class="p-button-danger"
-      ></button>
-    </ng-template>
-  </p-toolbar>
-
+<div class="card pt-8 pl-6 pr-6">
   <p-table
     #dt
     [value]="tasks"

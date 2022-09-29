@@ -35,6 +35,7 @@ import { JwtInterceptor } from './interceptor';
 import { HeaderComponent } from './userpage/header/header.component';
 import { UserdashboardComponent } from './userpage/pages/userdashboard/userdashboard.component';
 import { TasklistComponent } from './userpage/pages/userdashboard/tasklist/tasklist.component';
+import { UnderconstructionComponent } from './userpage/pages/underconstruction/underconstruction.component';
 
 const ADMIN_MODULE = [
   ConfirmDialogModule,
@@ -59,6 +60,7 @@ const ADMIN_MODULE = [
     HeaderComponent,
     UserdashboardComponent,
     TasklistComponent,
+    UnderconstructionComponent,
   ],
   imports: [
     BrowserModule,

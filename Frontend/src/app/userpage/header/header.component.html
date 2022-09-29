@@ -1,27 +1,32 @@
 <div class="headercontainer">
-  <li class="namelogo"
-  routerLinkActive="active" routerLink="/dashboard">
-  <span class="material-symbols-outlined logo" [ngStyle]= "{'color':'orange'}">home</span>
+  <li class="namelogo" routerLinkActive="active" routerLink="/dashboard/home">
+    <span class="material-symbols-outlined logo" [ngStyle]="{ color: 'orange' }"
+      >home</span
+    >
     <a style="cursor: pointer" class="nav-link">Dashboard</a>
   </li>
 
-  <li
-    class="namelogo"
-    routerLinkActive="active" routerLink="/overview"
-  >
-  <span class="material-symbols-outlined logo" [ngStyle]= "{'color':'orange'}">edit</span>
-    <a style="cursor: pointer" class="nav-link">Edit</a>
+  <li class="namelogo" routerLinkActive="active" routerLink="/dashboard/info">
+    <span class="material-symbols-outlined logo" [ngStyle]="{ color: 'orange' }"
+      >info</span
+    >
+    <a style="cursor: pointer" class="nav-link">Info</a>
   </li>
   <li
     class="namelogo"
-    routerLinkActive="active" routerLink="/overview"
+    routerLinkActive="active"
+    routerLink="/dashboard/overview"
   >
-  <span class="material-symbols-outlined logo" [ngStyle]= "{'color':'orange'}">account_circle</span>
+    <span class="material-symbols-outlined logo" [ngStyle]="{ color: 'orange' }"
+      >account_circle</span
+    >
     <a style="cursor: pointer" class="nav-link">Overview</a>
   </li>
 
   <li class="namelogo" (click)="logoutUser()">
-    <span class="material-symbols-outlined logo" [ngStyle]= "{'color':'orange'}">logout</span>
+    <span class="material-symbols-outlined logo" [ngStyle]="{ color: 'orange' }"
+      >logout</span
+    >
     <a style="cursor: pointer" class="nav-link">Log out </a>
   </li>
 </div>
