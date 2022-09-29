@@ -8,6 +8,7 @@ router.post("/new", async (req, res) => {
     desc: req.body.desc,
     date: req.body.date,
     timer: req.body.timer,
+    start: req.body.start,
     user: req.body.user,
   });
   if (!task) return res.status(400).send("the profile cannot be created");

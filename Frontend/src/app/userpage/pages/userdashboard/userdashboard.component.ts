@@ -17,6 +17,7 @@ export class UserdashboardComponent implements OnInit {
   time: number = 0;
   display: any;
   interval: any;
+  starttime: any;
 
   tasks: object[] = [];
 
@@ -52,6 +53,7 @@ export class UserdashboardComponent implements OnInit {
     this.timer ? (this.button = 'STOP TIMER') : (this.button = 'START TIMER');
     if (this.timer) {
       this.startTimer();
+      this.starttime = new Date().toString();
     } else {
       this.pauseTimer();
 
@@ -63,6 +65,7 @@ export class UserdashboardComponent implements OnInit {
         desc: this.taskForm?.['desc'].value,
         date: new Date().toString(),
         timer: this.display,
+        start: this.starttime,
       };
 
       this.taskService.createTask(taskData).subscribe(
