@@ -19,6 +19,9 @@ import { AdminComponent } from './admin/admin.component';
 import { SidenavComponent } from './admin/sidenav/sidenav.component';
 import { UserpageComponent } from './userpage/userpage.component';
 import { HttpClientModule } from '@angular/common/http';
+import { AdminhomeComponent } from './admin/pages/adminhome/adminhome.component';
+import { UserprofilesComponent } from './admin/pages/userprofiles/userprofiles.component';
+import { UserformsComponent } from './admin/pages/userprofiles/userforms/userforms.component';
 
 @NgModule({
   declarations: [
@@ -27,6 +30,9 @@ import { HttpClientModule } from '@angular/common/http';
     AdminComponent,
     SidenavComponent,
     UserpageComponent,
+    AdminhomeComponent,
+    UserprofilesComponent,
+    UserformsComponent,
   ],
   imports: [
     BrowserModule,
