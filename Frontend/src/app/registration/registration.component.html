@@ -14,8 +14,10 @@
                 formControlName="email"
                 type="email"
               />
-              <!-- <mat-error *ngIf="email.invalid">Email is required</mat-error> -->
-              <p
+              <mat-error *ngIf="!loginForm['email'].valid"
+                >Email is required</mat-error
+              >
+              <!-- <p
                 class="help-block"
                 *ngIf="!loginForm['email'].valid && loginForm['email'].touched"
               >
@@ -25,7 +27,7 @@
                 <mat-error *ngIf="!loginForm['email'].errors?.['email']"
                   >Email is invalid</mat-error
                 >
-              </p>
+              </p> -->
               <mat-icon matSuffix>email</mat-icon>
             </mat-form-field>
             <mat-form-field>
@@ -151,7 +153,6 @@
     </mat-tab-group>
   </mat-card>
 </div>
-
 <!-- <div class="login-page">
   <mat-card class="mat-elevation-z12">
     <mat-card-title style="text-align: center">Login / Register</mat-card-title>
