@@ -1,5 +1,9 @@
+import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { ConfirmationService, MessageService } from 'primeng/api';
+import { Task } from 'src/app/models/task';
+import { TaskService } from '../service/task.service';
 
 @Component({
   selector: 'app-userdashboard',
@@ -19,7 +23,12 @@ export class UserdashboardComponent implements OnInit {
   taskFormGroup: FormGroup;
   isSubmitted = true;
 
-  constructor(private formBuilder: FormBuilder) {}
+  constructor(
+    private formBuilder: FormBuilder,
+    private taskService: TaskService,
+    private messageService: MessageService,
+    private confirmationService: ConfirmationService
+  ) {}
 
   ngOnInit(): void {
     this._initTaskForm();
@@ -36,26 +45,35 @@ export class UserdashboardComponent implements OnInit {
     return this.taskFormGroup.controls;
   }
 
-  onClickTimer(event: any) {
+  onClickTimer() {
+    if (this.taskForm?.['name'].value.trim() === '') return;
+
     this.timer = !this.timer;
     this.timer ? (this.button = 'STOP TIMER') : (this.button = 'START TIMER');
     if (this.timer) {
       this.startTimer();
     } else {
       this.pauseTimer();
-      console.log(this.display);
 
-      if (this.taskFormGroup.invalid) return;
+      console.log(this.display);
       this.isSubmitted = true;
 
       const taskData = {
         name: this.taskForm?.['name'].value,
         desc: this.taskForm?.['desc'].value,
+        date: new Date().toString(),
         timer: this.display,
       };
 
-      this.tasks.push(taskData);
-      console.log(this.tasks);
+      this.taskService.createTask(taskData).subscribe(
+        (task) => {
+          console.log(task);
+          this.taskService.task.next(task);
+        },
+        (error: HttpErrorResponse) => {
+          console.log(error);
+        }
+      );
 
       this.taskForm?.['name'].setValue('');
       this.taskForm?.['desc'].setValue('');

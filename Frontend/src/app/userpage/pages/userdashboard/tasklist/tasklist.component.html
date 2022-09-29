@@ -22,7 +22,7 @@
 
   <p-table
     #dt
-    [value]="products"
+    [value]="tasks"
     [rows]="10"
     [paginator]="true"
     [globalFilterFields]="[
@@ -32,7 +32,7 @@
       'status'
     ]"
     responsiveLayout="scroll"
-    [(selection)]="selectedProducts"
+    [(selection)]="tasks"
     [rowHover]="true"
     dataKey="id"
     currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
@@ -55,45 +55,37 @@
     </ng-template>
     <ng-template pTemplate="header">
       <tr>
-        <th style="width: 3rem">
-          <p-tableHeaderCheckbox></p-tableHeaderCheckbox>
-        </th>
+        <th>Sl.no</th>
         <th pSortableColumn="name">
-          Name <p-sortIcon field="name"></p-sortIcon>
+          Project Name <p-sortIcon field="name"></p-sortIcon>
         </th>
-        <th pSortableColumn="price">
-          Price <p-sortIcon field="price"></p-sortIcon>
+        <th pSortableColumn="desc">
+          Project Description <p-sortIcon field="price"></p-sortIcon>
         </th>
-        <th pSortableColumn="category">
-          Category <p-sortIcon field="category"></p-sortIcon>
+        <th pSortableColumn="date">
+          Date <p-sortIcon field="category"></p-sortIcon>
         </th>
-        <th pSortableColumn="rating">
-          Reviews <p-sortIcon field="rating"></p-sortIcon>
+        <th pSortableColumn="timestart">
+          Time Start <p-sortIcon field="rating"></p-sortIcon>
         </th>
-        <th pSortableColumn="inventoryStatus">
-          Status <p-sortIcon field="inventoryStatus"></p-sortIcon>
+        <th pSortableColumn="timeend">
+          Time End <p-sortIcon field="inventoryStatus"></p-sortIcon>
         </th>
+        <th pSortableColumn="totaltime">
+          Total Time <p-sortIcon field="inventoryStatus"></p-sortIcon>
+        </th>
+        <th></th>
       </tr>
     </ng-template>
-    <ng-template pTemplate="body" let-product>
+    <ng-template pTemplate="body" let-task>
       <tr>
-        <td>
-          <p-tableCheckbox [value]="product"></p-tableCheckbox>
-        </td>
-        <td>{{ product.name }}</td>
-        <td>{{ product.price | currency: "USD" }}</td>
-        <td>{{ product.category }}</td>
-        <td>
-          <span
-            [class]="
-              'product-badge status-' +
-              (product.inventoryStatus
-                ? product.inventoryStatus.toLowerCase()
-                : '')
-            "
-            >{{ product.inventoryStatus }}</span
-          >
-        </td>
+        <td>1.</td>
+        <td>{{ task.name | titlecase }}</td>
+        <td>{{ task.desc }}</td>
+        <td>24/05/2021</td>
+        <td>02:05:24</td>
+        <td>04:25:30</td>
+        <td>1hour 35minutes</td>
         <td>
           <button
             pButton
@@ -112,7 +104,7 @@
     </ng-template>
     <ng-template pTemplate="summary">
       <div class="flex align-items-center justify-content-between">
-        In total there are {{ products ? products.length : 0 }} products.
+        In total there are {{ tasks ? tasks.length : 0 }} products.
       </div>
     </ng-template>
   </p-table>
@@ -126,12 +118,6 @@
   styleClass="p-fluid"
 >
   <ng-template pTemplate="content">
-    <img
-      [src]="'assets/showcase/images/demo/product/' + product.image"
-      [alt]="product.image"
-      class="product-image"
-      *ngIf="product.image"
-    />
     <div class="field">
       <label for="name">Name</label>
       <input
