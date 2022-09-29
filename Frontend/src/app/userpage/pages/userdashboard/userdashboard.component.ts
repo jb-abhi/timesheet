@@ -71,7 +71,7 @@ export class UserdashboardComponent implements OnInit {
       this.taskService.createTask(taskData).subscribe(
         (task) => {
           console.log(task);
-          this.taskService.task.next(task);
+          this.taskService.task.next(true);
         },
         (error: HttpErrorResponse) => {
           console.log(error);
@@ -98,10 +98,9 @@ export class UserdashboardComponent implements OnInit {
   }
 
   transform(value: number): string {
-    var sec_num = value;
-    var hours = Math.floor(sec_num / 3600);
-    var minutes = Math.floor((sec_num - hours * 3600) / 60);
-    var seconds = sec_num - hours * 3600 - minutes * 60;
+    let sec_num = value;
+    let hours = Math.floor(sec_num / 3600);
+    let minutes = Math.floor((sec_num - hours * 3600) / 60);
 
     if (hours < 10) {
       hours = 0;

@@ -19,5 +19,9 @@ export class TaskService {
     return this.http.get<Task[]>(this.apiURLtasks);
   }
 
-  task = new BehaviorSubject<Object>({});
+  deleteTask(taskId: string): Observable<Object> {
+    return this.http.delete<Object>(this.apiURLtasks + `/${taskId}`);
+  }
+
+  task = new BehaviorSubject<Boolean>(false);
 }
