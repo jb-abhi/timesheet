@@ -1,0 +1,51 @@
+.material-symbols-outlined {
+  font-variation-settings: "FILL" 0, "wght" 400, "GRAD" 0, "opsz" 48;
+  font-size: 2rem;
+}
+
+.headercontainer {
+  height: 4rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 2rem;
+  background-color: #fff;
+  border-bottom: solid 1px #eee;
+
+  .active {
+    border-bottom: solid 2px #ff7730;
+    background-color: #f7f7f7;
+  }
+
+  .namelogo {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.4em;
+    padding: 0.5em 2em;
+
+    &:hover {
+      background-color: #f7f7f7;
+    }
+  }
+
+  li {
+    list-style: none;
+    font-family: "Roboto", cursive;
+    text-decoration: none;
+    font-size: 1.5rem;
+
+    a {
+      text-decoration: none;
+      color: black;
+    }
+  }
+
+  .nav-link {
+    text-align: center;
+    height: 100%;
+  }
+  .active {
+    font-weight: 800;
+  }
+}

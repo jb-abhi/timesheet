@@ -31,6 +31,8 @@ import { ToastModule } from 'primeng/toast';
 import { ScrollTopModule } from 'primeng/scrolltop';
 import { ConfirmationService, MessageService } from 'primeng/api';
 import { JwtInterceptor } from './interceptor';
+import { HeaderComponent } from './userpage/header/header.component';
+import { UserdashboardComponent } from './userpage/pages/userdashboard/userdashboard.component';
 
 const ADMIN_MODULE = [
   ConfirmDialogModule,
@@ -51,6 +53,8 @@ const ADMIN_MODULE = [
     AdminhomeComponent,
     UserprofilesComponent,
     UserformsComponent,
+    HeaderComponent,
+    UserdashboardComponent,
   ],
   imports: [
     BrowserModule,
