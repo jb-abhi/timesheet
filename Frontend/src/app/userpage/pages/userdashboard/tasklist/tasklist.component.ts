@@ -58,6 +58,7 @@ export class TasklistComponent implements OnInit {
   }
 
   onSave() {
+    if (this.task.name?.trim() === '') return;
     let taskId = this.task.id!;
     this.taskService.updateTask(taskId, this.task).subscribe((data) => {
       this.editMode = false;
