@@ -77,9 +77,9 @@
         <th></th>
       </tr>
     </ng-template>
-    <ng-template pTemplate="body" let-task>
+    <ng-template let-i="rowIndex" pTemplate="body" let-task>
       <tr>
-        <td>{{ task.id }}</td>
+        <td>{{ i + 1 }}</td>
         <td>{{ task.name | titlecase }}</td>
         <td>{{ task.desc }}</td>
         <td>{{ task.date | date: "dd-MM-yyyy" }}</td>
