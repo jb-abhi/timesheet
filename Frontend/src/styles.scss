@@ -1,1 +1,35 @@
 /* You can add global styles to this file, and also import other style files */
+@import "../node_modules/primeicons/primeicons.css";
+@import "../node_modules/primeng/resources/themes/bootstrap4-dark-blue/theme.css";
+@import "../node_modules/primeng/resources/primeng.min.css";
+// @import"~bootstrap/dist/css/bootstrap.min.css";
+@import "../node_modules/primeflex/primeflex.css";
+
+*,
+*::after,
+*::before {
+  margin: 0;
+  padding: 0;
+  box-sizing: inherit;
+}
+
+html {
+  font-size: 62.5%;
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: rgb(236, 236, 236);
+  scroll-behavior: smooth;
+  box-sizing: border-box;
+  font-family: "Lato", sans-serif;
+  font-weight: 400;
+  line-height: 1.7;
+}
+
+::selection {
+  background-color: black;
+  color: white;
+}
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
