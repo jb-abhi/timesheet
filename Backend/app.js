@@ -31,8 +31,10 @@ mongoose
   });
 
 const usersRoutes = require("./routes/users");
+const tasksRoutes = require("./routes/tasks");
 
 app.use(`${api}/users`, usersRoutes);
+app.use(`${api}/tasks`, tasksRoutes);
 
 app.listen(PORT, () => {
   console.log(`Server is listening on port ${PORT}`);
