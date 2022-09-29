@@ -28,6 +28,7 @@ import { TableModule } from 'primeng/table';
 import { ToolbarModule } from 'primeng/toolbar';
 import { CardModule } from 'primeng/card';
 import { ToastModule } from 'primeng/toast';
+import { DialogModule } from 'primeng/dialog';
 import { ScrollTopModule } from 'primeng/scrolltop';
 import { ConfirmationService, MessageService } from 'primeng/api';
 import { JwtInterceptor } from './interceptor';
@@ -42,6 +43,7 @@ const ADMIN_MODULE = [
   CardModule,
   ToastModule,
   ScrollTopModule,
+  DialogModule,
 ];
 
 @NgModule({

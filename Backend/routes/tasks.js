@@ -19,7 +19,13 @@ router.post("/new", async (req, res) => {
 router.get("/", async (req, res) => {
   const taskList = await Task.find();
   if (!taskList) return res.status(500).json({ success: false });
-  res.send(taskList);
+  res.status(200).send(taskList);
+});
+
+router.get("/:id", async (req, res) => {
+  const task = await Task.findById(req.params.id).select("-passwordHash");
+  if (!task) return res.status(500).json({ success: false });
+  res.status(200).send(task);
 });
 
 router.put("/:id", async (req, res) => {
