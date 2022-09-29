@@ -12,6 +12,14 @@ import { TaskService } from '../../service/task.service';
 export class TasklistComponent implements OnInit {
   tasks: Task[] = [];
   count: number = 0;
+  editMode: boolean = false;
+  task: Task = {
+    name: '',
+    desc: '',
+    date: '',
+    start: '',
+    timer: '',
+  };
 
   constructor(private taskService: TaskService) {}
 
@@ -25,17 +33,6 @@ export class TasklistComponent implements OnInit {
     });
   }
 
-  // getTasks() {
-  //   this.taskService.task.subscribe((task) => {
-  //     this.count++;
-  //     console.log(this.count);
-  //     if (this.count !== 1) {
-  //       this.tasks.push(task);
-  //       console.log(this.tasks);
-  //     }
-  //   });
-  // }
-
   getTasks() {
     this.taskService.getTasks().subscribe((task) => {
       this.tasks = task;
@@ -46,6 +43,25 @@ export class TasklistComponent implements OnInit {
     this.taskService.deleteTask(taskId).subscribe(() => {
       console.log('deleted');
       this.getTasks();
+    });
+  }
+
+  onEdit(taskId: string) {
+    this.editMode = true;
+    this.taskService.getTask(taskId).subscribe((task) => {
+      this.task = task;
+    });
+  }
+
+  onCancel() {
+    this.editMode = false;
+  }
+
+  onSave() {
+    let taskId = this.task.id!;
+    this.taskService.updateTask(taskId, this.task).subscribe((data) => {
+      this.editMode = false;
+      this.taskService.task.next(true);
     });
   }
 }
