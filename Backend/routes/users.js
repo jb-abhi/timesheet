@@ -62,7 +62,7 @@ router.put("/:id", async (req, res) => {
   res.status(200).send(user);
 });
 
-//Deleting
+//DELETE
 router.delete("/:id", (req, res) => {
   User.findByIdAndRemove(req.params.id)
     .then((user) => {

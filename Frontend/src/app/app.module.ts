@@ -18,10 +18,28 @@ import { MatIconModule } from '@angular/material/icon';
 import { AdminComponent } from './admin/admin.component';
 import { SidenavComponent } from './admin/sidenav/sidenav.component';
 import { UserpageComponent } from './userpage/userpage.component';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AdminhomeComponent } from './admin/pages/adminhome/adminhome.component';
 import { UserprofilesComponent } from './admin/pages/userprofiles/userprofiles.component';
 import { UserformsComponent } from './admin/pages/userprofiles/userforms/userforms.component';
+
+import { ConfirmDialogModule } from 'primeng/confirmdialog';
+import { TableModule } from 'primeng/table';
+import { ToolbarModule } from 'primeng/toolbar';
+import { CardModule } from 'primeng/card';
+import { ToastModule } from 'primeng/toast';
+import { ScrollTopModule } from 'primeng/scrolltop';
+import { ConfirmationService, MessageService } from 'primeng/api';
+import { JwtInterceptor } from './interceptor';
+
+const ADMIN_MODULE = [
+  ConfirmDialogModule,
+  TableModule,
+  ToolbarModule,
+  CardModule,
+  ToastModule,
+  ScrollTopModule,
+];
 
 @NgModule({
   declarations: [
@@ -49,8 +67,13 @@ import { UserformsComponent } from './admin/pages/userprofiles/userforms/userfor
     MatButtonModule,
     MatCheckboxModule,
     MatIconModule,
+    ...ADMIN_MODULE,
   ],
-  providers: [],
+  providers: [
+    MessageService,
+    ConfirmationService,
+    { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
