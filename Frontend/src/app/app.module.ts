@@ -33,6 +33,7 @@ import { ConfirmationService, MessageService } from 'primeng/api';
 import { JwtInterceptor } from './interceptor';
 import { HeaderComponent } from './userpage/header/header.component';
 import { UserdashboardComponent } from './userpage/pages/userdashboard/userdashboard.component';
+import { TasklistComponent } from './userpage/pages/userdashboard/tasklist/tasklist.component';
 
 const ADMIN_MODULE = [
   ConfirmDialogModule,
@@ -55,6 +56,7 @@ const ADMIN_MODULE = [
     UserformsComponent,
     HeaderComponent,
     UserdashboardComponent,
+    TasklistComponent,
   ],
   imports: [
     BrowserModule,

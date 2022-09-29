@@ -12,7 +12,7 @@
             <p-button
               [label]="isEdit ? 'Update user' : 'Create User'"
               icon="pi pi-check-circle"
-              styleClass="p-button-primary mr-4 text-black-alpha-90"
+              styleClass="p-button-primary mr-4"
               (click)="onSubmit()"
             ></p-button>
             <p-button
@@ -38,7 +38,7 @@
                   id="username"
                   type="text"
                   pattern="[a-zA-Z ]*"
-                  class="text-base text-white text-xl surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full"
+                  class="text-base text-xl surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full"
                 />
                 <small
                   *ngIf="!userForm['username']?.valid && isSubmitted"
@@ -53,7 +53,7 @@
                   id="email"
                   type="text"
                   formControlName="email"
-                  class="text-base text-white text-xl surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full"
+                  class="text-base text-xl surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full"
                 />
                 <small
                   *ngIf="!userForm['email']?.valid && isSubmitted"
@@ -68,7 +68,7 @@
                   type="text"
                   formControlName="password"
                   pattern=".{8,}"
-                  class="text-base text-white text-xl surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full"
+                  class="text-base text-xl surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full"
                 />
                 <small
                   *ngIf="!userForm['password']?.valid && isSubmitted"
