@@ -4,7 +4,6 @@ import { AdminComponent } from './admin/admin.component';
 import { AdminhomeComponent } from './admin/pages/adminhome/adminhome.component';
 import { UserformsComponent } from './admin/pages/userprofiles/userforms/userforms.component';
 import { UserprofilesComponent } from './admin/pages/userprofiles/userprofiles.component';
-import { Adminguard } from './guards/adminguard.service';
 import { AuthGuard } from './guards/authguard.service';
 import { Roleguard } from './guards/roleguard.service';
 import { RegistrationComponent } from './registration/registration.component';
