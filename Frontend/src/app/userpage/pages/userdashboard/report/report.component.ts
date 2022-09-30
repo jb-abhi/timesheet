@@ -41,7 +41,7 @@ export class ReportComponent implements OnInit {
   }
 
   downloadpdf() {
-    let pdf = new jsPDF('p', 'mm', [1200, 950]);
+    let pdf = new jsPDF('p', 'mm', [1500, 1500]);
     pdf.html(this.el.nativeElement, {
       callback: (pdf) => {
         for (let i = 2; i < 5; i++) {
