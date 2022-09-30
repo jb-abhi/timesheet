@@ -177,3 +177,12 @@
 </p-dialog>
 
 <p-confirmDialog [style]="{ width: '450px' }"></p-confirmDialog>
+
+<div class="reportContainer">
+  <p-button
+    label="Generate Report"
+    icon="pi pi-file"
+    [loading]="isLoading"
+    (click)="generateReport()"
+  ></p-button>
+</div>

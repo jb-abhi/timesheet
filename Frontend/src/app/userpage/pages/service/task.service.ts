@@ -8,6 +8,9 @@ import { BehaviorSubject, Observable } from 'rxjs';
   providedIn: 'root',
 })
 export class TaskService {
+  private dataSource: BehaviorSubject<string> = new BehaviorSubject<string>('');
+  data: Observable<string> = this.dataSource.asObservable();
+
   apiURLtasks = environment.apiURL + 'tasks';
   constructor(private http: HttpClient) {}
 
@@ -32,4 +35,9 @@ export class TaskService {
   }
 
   task = new BehaviorSubject<Boolean>(false);
+  // getDate = new BehaviorSubject<string>();
+
+  sendData(data: string) {
+    this.dataSource.next(data);
+  }
 }

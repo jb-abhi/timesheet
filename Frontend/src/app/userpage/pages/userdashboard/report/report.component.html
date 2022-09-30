@@ -1,0 +1,66 @@
+<div #report class="reportContainer">
+  <div class="heading">
+    <h2>Report of {{ user.name | titlecase }}</h2>
+    <h3>Email : {{ user.email }}</h3>
+    <p>Report generated on {{ date | date: "dd-MM-yyyy hh:mm a" }}</p>
+  </div>
+  <hr />
+  <div class="subheading">
+    <h3>Report of Daily Tasks</h3>
+    <div class="tablecontainer">
+      <div class="table">
+        <div class="table-header">
+          <div class="header__item">
+            <a id="name" class="filter__link" href="#">Sl.no</a>
+          </div>
+          <div class="header__item">
+            <a id="wins" class="filter__link filter__link--number" href="#"
+              >Project Name</a
+            >
+          </div>
+          <div class="header__item">
+            <a id="draws" class="filter__link filter__link--number" href="#"
+              >Description</a
+            >
+          </div>
+          <div class="header__item">
+            <a id="losses" class="filter__link filter__link--number" href="#"
+              >Activity Date</a
+            >
+          </div>
+          <div class="header__item">
+            <a id="total" class="filter__link filter__link--number" href="#"
+              >Start Time</a
+            >
+          </div>
+          <div class="header__item">
+            <a id="total" class="filter__link filter__link--number" href="#"
+              >End Time</a
+            >
+          </div>
+          <div class="header__item">
+            <a id="total" class="filter__link filter__link--number" href="#"
+              >Completion Time</a
+            >
+          </div>
+        </div>
+        <div class="table-content">
+          <div *ngFor="let task of tasks; let i = index" class="table-row">
+            <div class="table-data">{{ i + 1 }}</div>
+            <div class="table-data">{{ task.name }}</div>
+            <div class="table-data">{{ task.desc }}</div>
+            <div class="table-data">{{ task.date | date: "dd-MM-yyyy" }}</div>
+            <div class="table-data">{{ task.start | date: "hh:mm a" }}</div>
+            <div class="table-data">{{ task.date | date: "hh:mm a" }}</div>
+            <div class="table-data">{{ task.timer }}</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="btnContainer">
+  <div class="buttonContainer" (click)="downloadpdf()">
+    <h3><a id="pdf" class="download">Download PDF</a></h3>
+  </div>
+</div>
