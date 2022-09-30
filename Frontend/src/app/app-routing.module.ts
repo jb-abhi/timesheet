@@ -8,6 +8,7 @@ import { AuthGuard } from './guards/authguard.service';
 import { Roleguard } from './guards/roleguard.service';
 import { RegistrationComponent } from './registration/registration.component';
 import { UnderconstructionComponent } from './userpage/pages/underconstruction/underconstruction.component';
+import { ReportComponent } from './userpage/pages/userdashboard/report/report.component';
 import { UserdashboardComponent } from './userpage/pages/userdashboard/userdashboard.component';
 import { UserpageComponent } from './userpage/userpage.component';
 
@@ -26,6 +27,7 @@ const routes: Routes = [
           { path: 'home', component: UserdashboardComponent },
           { path: 'info', component: UnderconstructionComponent },
           { path: 'overview', component: UnderconstructionComponent },
+          { path: 'generatereport', component: ReportComponent },
         ],
       },
     ],

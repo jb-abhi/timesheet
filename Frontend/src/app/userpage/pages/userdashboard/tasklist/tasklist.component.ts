@@ -1,5 +1,6 @@
 import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { ConfirmationService } from 'primeng/api';
 import { MessageService } from 'primeng/api';
 import { LocalstorageService } from 'src/app/localstorage.service';
@@ -22,12 +23,14 @@ export class TasklistComponent implements OnInit {
     start: '',
     timer: '',
   };
+  isLoading: true;
 
   constructor(
     private taskService: TaskService,
     private localStorage: LocalstorageService,
     private messageService: MessageService,
-    private confirmationService: ConfirmationService
+    private confirmationService: ConfirmationService,
+    private router: Router
   ) {}
 
   ngOnInit() {
@@ -73,6 +76,12 @@ export class TasklistComponent implements OnInit {
       },
       reject: () => {},
     });
+  }
+
+  generateReport() {
+    this.router.navigate(['/dashboard/generatereport']);
+    let date = new Date().toString();
+    this.taskService.sendData(date);
   }
 
   onEdit(taskId: string) {

@@ -1,5 +1,6 @@
 const { Task } = require("../models/task");
 const express = require("express");
+const { User } = require("../models/user");
 const router = express.Router();
 
 router.post("/new", async (req, res) => {
@@ -63,6 +64,13 @@ router.delete("/:id", (req, res) => {
     .catch((err) => {
       return res.status(500).json({ success: false, error: err });
     });
+});
+
+//GRAPH
+router.get("/", async (req, res) => {
+  const taskList = await Task.find().populate("user");
+  if (!taskList) return res.status(500).json({ success: false });
+  res.status(200).send(taskList);
 });
 
 module.exports = router;

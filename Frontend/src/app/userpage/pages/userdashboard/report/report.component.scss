@@ -1,0 +1,139 @@
+@import url("https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700");
+
+$base-spacing-unit: 24px;
+$half-spacing-unit: $base-spacing-unit / 2;
+
+$color-alpha: #1772ff;
+$color-form-highlight: #eeeeee;
+
+.reportContainer {
+  background-color: white;
+  padding: 3.5rem 4rem;
+}
+
+.subheading {
+  margin-top: 3rem;
+}
+
+*,
+*:before,
+*:after {
+  box-sizing: border-box;
+}
+
+body {
+  padding: $base-spacing-unit;
+  font-family: "Source Sans Pro", sans-serif;
+  margin: 0;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin: 0;
+}
+
+.buttonContainer {
+  background-color: rgb(59, 59, 59);
+  margin: 5rem auto;
+  padding: 1em 2em;
+  border-radius: 5px;
+  width: 25%;
+  transition: all 0.2s;
+  h3 {
+    text-align: center;
+    transition: all 0.2s;
+    a {
+      text-decoration: none;
+      color: white;
+      font-family: Cambria, Cochin, Georgia, Times, "Times New Roman", serif;
+      transition: all 0.2s;
+      text-align: center;
+    }
+    &:hover a {
+      cursor: pointer;
+      background-color: #4314b6;
+    }
+  }
+  &:hover {
+    background-color: #4314b6;
+    cursor: pointer;
+  }
+}
+
+.btnContainer {
+  background-color: white;
+  padding: 1.5rem 1rem;
+}
+
+.container {
+  max-width: 1000px;
+  margin-right: auto;
+  margin-left: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+}
+
+.table {
+  width: 100%;
+  border: 1px solid $color-form-highlight;
+}
+
+.table-header {
+  display: flex;
+  width: 100%;
+  background: #000;
+  padding: ($half-spacing-unit * 1.5) 0;
+}
+
+.table-row {
+  display: flex;
+  width: 100%;
+  padding: ($half-spacing-unit * 1.5) 0;
+
+  &:nth-of-type(odd) {
+    background: $color-form-highlight;
+  }
+}
+
+.table-data,
+.header__item {
+  flex: 1 1 20%;
+  text-align: center;
+}
+
+.header__item {
+  text-transform: uppercase;
+}
+
+.filter__link {
+  color: white;
+  text-decoration: none;
+  position: relative;
+  display: inline-block;
+  padding-left: $base-spacing-unit;
+  padding-right: $base-spacing-unit;
+
+  &::after {
+    content: "";
+    position: absolute;
+    right: -($half-spacing-unit * 1.5);
+    color: white;
+    font-size: $half-spacing-unit;
+    top: 50%;
+    transform: translateY(-50%);
+  }
+
+  &.desc::after {
+    content: "(desc)";
+  }
+
+  &.asc::after {
+    content: "(asc)";
+  }
+}

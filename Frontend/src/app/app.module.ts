@@ -29,6 +29,7 @@ import { ToolbarModule } from 'primeng/toolbar';
 import { CardModule } from 'primeng/card';
 import { ToastModule } from 'primeng/toast';
 import { DialogModule } from 'primeng/dialog';
+import { ChartModule } from 'primeng/chart';
 import { ScrollTopModule } from 'primeng/scrolltop';
 import { ConfirmationService, MessageService } from 'primeng/api';
 import { JwtInterceptor } from './interceptor';
@@ -36,6 +37,7 @@ import { HeaderComponent } from './userpage/header/header.component';
 import { UserdashboardComponent } from './userpage/pages/userdashboard/userdashboard.component';
 import { TasklistComponent } from './userpage/pages/userdashboard/tasklist/tasklist.component';
 import { UnderconstructionComponent } from './userpage/pages/underconstruction/underconstruction.component';
+import { ReportComponent } from './userpage/pages/userdashboard/report/report.component';
 
 const ADMIN_MODULE = [
   ConfirmDialogModule,
@@ -45,6 +47,7 @@ const ADMIN_MODULE = [
   ToastModule,
   ScrollTopModule,
   DialogModule,
+  ChartModule,
 ];
 
 @NgModule({
@@ -61,6 +64,7 @@ const ADMIN_MODULE = [
     UserdashboardComponent,
     TasklistComponent,
     UnderconstructionComponent,
+    ReportComponent,
   ],
   imports: [
     BrowserModule,

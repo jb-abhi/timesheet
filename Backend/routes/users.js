@@ -43,6 +43,17 @@ router.get("/:id", async (req, res) => {
   res.status(200).send(user);
 });
 
+router.post("/username", async (req, res) => {
+  const user = await User.findOne({ email: req.body.email }).select(
+    "-passwordHash"
+  );
+
+  if (!user) {
+    res.status(500).json({ success: false });
+  }
+  res.status(200).send(user);
+});
+
 //Updating user
 router.put("/:id", async (req, res) => {
   const user = await User.findByIdAndUpdate(
