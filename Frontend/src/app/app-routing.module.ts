@@ -6,6 +6,7 @@ import { UserformsComponent } from './admin/pages/userprofiles/userforms/userfor
 import { UserprofilesComponent } from './admin/pages/userprofiles/userprofiles.component';
 import { Adminguard } from './guards/adminguard.service';
 import { AuthGuard } from './guards/authguard.service';
+import { Roleguard } from './guards/roleguard.service';
 import { RegistrationComponent } from './registration/registration.component';
 import { UnderconstructionComponent } from './userpage/pages/underconstruction/underconstruction.component';
 import { UserdashboardComponent } from './userpage/pages/userdashboard/userdashboard.component';
@@ -16,7 +17,8 @@ const routes: Routes = [
   { path: 'login', component: RegistrationComponent },
   {
     path: '',
-    canActivate: [AuthGuard],
+    canActivate: [AuthGuard, Roleguard],
+    data: { expectedRoles: 'user' },
     children: [
       {
         path: 'dashboard',
@@ -32,7 +34,8 @@ const routes: Routes = [
 
   {
     path: '',
-    canActivate: [Adminguard],
+    canActivate: [AuthGuard, Roleguard],
+    data: { expectedRoles: 'admin' },
     children: [
       {
         path: 'admin',
