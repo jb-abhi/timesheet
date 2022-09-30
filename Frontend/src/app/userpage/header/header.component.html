@@ -5,13 +5,6 @@
     >
     <a style="cursor: pointer" class="nav-link">Dashboard</a>
   </li>
-
-  <li class="namelogo" routerLinkActive="active" routerLink="/dashboard/info">
-    <span class="material-symbols-outlined logo" [ngStyle]="{ color: 'orange' }"
-      >info</span
-    >
-    <a style="cursor: pointer" class="nav-link">Info</a>
-  </li>
   <li
     class="namelogo"
     routerLinkActive="active"
@@ -20,7 +13,7 @@
     <span class="material-symbols-outlined logo" [ngStyle]="{ color: 'orange' }"
       >account_circle</span
     >
-    <a style="cursor: pointer" class="nav-link">Overview</a>
+    <a style="cursor: pointer" class="nav-link">{{ username | titlecase }}</a>
   </li>
 
   <li class="namelogo" (click)="logoutUser()">

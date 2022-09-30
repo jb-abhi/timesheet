@@ -16,8 +16,8 @@ router.post("/new", async (req, res) => {
   res.send(task);
 });
 
-router.get("/", async (req, res) => {
-  const taskList = await Task.find();
+router.get("/all/:id", async (req, res) => {
+  const taskList = await Task.find({ user: req.params.id });
   if (!taskList) return res.status(500).json({ success: false });
   res.status(200).send(taskList);
 });

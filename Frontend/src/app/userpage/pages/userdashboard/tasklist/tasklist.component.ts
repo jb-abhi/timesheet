@@ -1,6 +1,8 @@
+import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { ConfirmationService } from 'primeng/api';
 import { MessageService } from 'primeng/api';
+import { LocalstorageService } from 'src/app/localstorage.service';
 import { Task } from 'src/app/models/task';
 import { TaskService } from '../../service/task.service';
 
@@ -21,7 +23,12 @@ export class TasklistComponent implements OnInit {
     timer: '',
   };
 
-  constructor(private taskService: TaskService) {}
+  constructor(
+    private taskService: TaskService,
+    private localStorage: LocalstorageService,
+    private messageService: MessageService,
+    private confirmationService: ConfirmationService
+  ) {}
 
   ngOnInit() {
     this.getTasks();
@@ -34,15 +41,37 @@ export class TasklistComponent implements OnInit {
   }
 
   getTasks() {
-    this.taskService.getTasks().subscribe((task) => {
+    const userId = this.localStorage.getUserId();
+    this.taskService.getTasks(userId).subscribe((task) => {
       this.tasks = task;
     });
   }
 
   onDelete(taskId: string) {
-    this.taskService.deleteTask(taskId).subscribe(() => {
-      console.log('deleted');
-      this.getTasks();
+    this.confirmationService.confirm({
+      message: 'Are you sure that you want to delete the task?',
+      header: 'Delete Task',
+      icon: 'pi pi-exclamation-triangle',
+      accept: () => {
+        this.taskService.deleteTask(taskId).subscribe(
+          (res) => {
+            this.getTasks();
+            this.messageService.add({
+              severity: 'success',
+              summary: 'Success',
+              detail: 'The selected task has been deleted',
+            });
+          },
+          (error: HttpErrorResponse) => {
+            this.messageService.add({
+              severity: 'error',
+              summary: 'Error',
+              detail: 'Cannot delete task!',
+            });
+          }
+        );
+      },
+      reject: () => {},
     });
   }
 
@@ -60,9 +89,24 @@ export class TasklistComponent implements OnInit {
   onSave() {
     if (this.task.name?.trim() === '') return;
     let taskId = this.task.id!;
-    this.taskService.updateTask(taskId, this.task).subscribe((data) => {
-      this.editMode = false;
-      this.taskService.task.next(true);
-    });
+    this.taskService.updateTask(taskId, this.task).subscribe(
+      (data) => {
+        this.editMode = false;
+        this.taskService.task.next(true);
+        this.messageService.add({
+          severity: 'success',
+          summary: 'Success',
+          detail: 'The selected task has been updated successfully',
+        });
+      },
+      (error: HttpErrorResponse) => {
+        console.log(error);
+        this.messageService.add({
+          severity: 'error',
+          summary: 'Error',
+          detail: 'Cannot create task!',
+        });
+      }
+    );
   }
 }

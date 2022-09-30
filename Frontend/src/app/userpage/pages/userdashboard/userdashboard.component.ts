@@ -1,9 +1,10 @@
 import { HttpErrorResponse } from '@angular/common/http';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { ConfirmationService, MessageService } from 'primeng/api';
+import { LocalstorageService } from 'src/app/localstorage.service';
 import { Task } from 'src/app/models/task';
 import { TaskService } from '../service/task.service';
+import { MessageService } from 'primeng/api';
 
 @Component({
   selector: 'app-userdashboard',
@@ -11,6 +12,8 @@ import { TaskService } from '../service/task.service';
   styleUrls: ['./userdashboard.component.scss'],
 })
 export class UserdashboardComponent implements OnInit {
+  @ViewChild('timerbtn', { static: false }) el!: ElementRef;
+
   timer: boolean = false;
   button: string = 'START TIMER';
 
@@ -24,11 +27,14 @@ export class UserdashboardComponent implements OnInit {
   taskFormGroup: FormGroup;
   isSubmitted = true;
 
+  message: string = '';
+  error: boolean = false;
+
   constructor(
     private formBuilder: FormBuilder,
     private taskService: TaskService,
-    private messageService: MessageService,
-    private confirmationService: ConfirmationService
+    private localStorage: LocalstorageService,
+    private messageService: MessageService
   ) {}
 
   ngOnInit(): void {
@@ -47,8 +53,14 @@ export class UserdashboardComponent implements OnInit {
   }
 
   onClickTimer() {
-    if (this.taskForm?.['name'].value.trim() === '') return;
-
+    if (this.taskForm?.['name'].value.trim() === '') {
+      this.message = 'Please enter Project Name';
+      this.el.nativeElement.style.backgroundColor = 'red';
+      this.error = true;
+      return;
+    }
+    this.error = false;
+    this.el.nativeElement.style.backgroundColor = '';
     this.timer = !this.timer;
     this.timer ? (this.button = 'STOP TIMER') : (this.button = 'START TIMER');
     if (this.timer) {
@@ -60,21 +72,37 @@ export class UserdashboardComponent implements OnInit {
       console.log(this.display);
       this.isSubmitted = true;
 
+      const userId = this.localStorage.getUserId();
+
       const taskData = {
         name: this.taskForm?.['name'].value,
         desc: this.taskForm?.['desc'].value,
         date: new Date().toString(),
         timer: this.display,
         start: this.starttime,
+        user: userId,
       };
 
       this.taskService.createTask(taskData).subscribe(
         (task) => {
           console.log(task);
           this.taskService.task.next(true);
+          this.messageService.add({
+            severity: 'success',
+            summary: 'Success',
+            detail: 'New task created successfully!',
+          });
         },
         (error: HttpErrorResponse) => {
           console.log(error);
+          this.messageService.add({
+            severity: 'error',
+            summary: 'Error',
+            detail: 'Cannot create task!',
+          });
+          if (error.status !== 400) {
+            this.message = 'Error in the server, Pls try again later.';
+          }
         }
       );
 
