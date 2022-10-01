@@ -68,8 +68,6 @@ export class UserdashboardComponent implements OnInit {
       this.starttime = new Date().toString();
     } else {
       this.pauseTimer();
-
-      console.log(this.display);
       this.isSubmitted = true;
 
       const userId = this.localStorage.getUserId();
@@ -85,7 +83,6 @@ export class UserdashboardComponent implements OnInit {
 
       this.taskService.createTask(taskData).subscribe(
         (task) => {
-          console.log(task);
           this.taskService.task.next(true);
           this.messageService.add({
             severity: 'success',
@@ -114,7 +111,6 @@ export class UserdashboardComponent implements OnInit {
   }
 
   startTimer() {
-    console.log('=====>');
     this.interval = setInterval(() => {
       if (this.time === 0) {
         this.time++;
